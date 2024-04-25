@@ -1,0 +1,87 @@
+type Query {
+  benefactor(id: ID!): BenefactorType
+  hello: String
+}
+
+type BenefactorType {
+  id: ID!
+  user: UserType!
+  experience: CharitiesBenefactorExperienceChoices!
+  freeTimePerWeek: Int!
+  tasks: [TaskType!]!
+}
+
+type UserType {
+  id: ID!
+
+  """Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."""
+  username: String!
+  lastName: String!
+}
+
+"""An enumeration."""
+enum CharitiesBenefactorExperienceChoices {
+  """Beginner"""
+  A_0
+
+  """Intermediate"""
+  A_1
+
+  """Expert"""
+  A_2
+}
+
+type TaskType {
+  id: ID!
+  title: String!
+  state: CharitiesTaskStateChoices!
+  charity: CharityType!
+  description: String!
+  assignedBenefactor: BenefactorType
+  date: Date
+  ageLimitFrom: Int
+  ageLimitTo: Int
+  genderLimit: CharitiesTaskGenderLimitChoices!
+}
+
+"""An enumeration."""
+enum CharitiesTaskStateChoices {
+  """Pending"""
+  P
+
+  """Waiting"""
+  W
+
+  """Assigned"""
+  A
+
+  """Done"""
+  D
+}
+
+type CharityType {
+  id: ID!
+  user: UserType!
+  name: String!
+  regNumber: String!
+  taskSet: [TaskType!]!
+}
+
+"""
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+"""An enumeration."""
+enum CharitiesTaskGenderLimitChoices {
+  """Male"""
+  M
+
+  """Female"""
+  F
+
+  """Unset"""
+  MF
+}

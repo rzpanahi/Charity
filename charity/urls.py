@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from graphql_api.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
+    path("graphql/", csrf_exempt(GraphQLView.as_view())),
     path("admin/", admin.site.urls),
     path("", include('charities.urls')),
     path("accounts/", include("accounts.urls")),

@@ -45,6 +45,8 @@ DJANGO_DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    "graphene",
+    "graphene_django",
 ]
 
 LOCAL_APPS = [
@@ -144,3 +146,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+GRAPHENE = {"SCHEMA": "graphql_api.schema.schema"}

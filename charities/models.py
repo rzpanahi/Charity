@@ -67,12 +67,13 @@ class Task(models.Model):
         default=TaskStatus.PENDING,
         choices=TaskStatus.choices,
     )
-    charity = models.ForeignKey(Charity, on_delete=models.CASCADE)
+    charity = models.ForeignKey(Charity, on_delete=models.CASCADE, related_name="tasks")
     description = models.TextField(blank=True)
     assigned_benefactor = models.ForeignKey(
         Benefactor,
         on_delete=models.SET_NULL,
         null=True,
+        related_name="tasks"
     )
     date = models.DateField(null=True, blank=True)
     age_limit_from = models.IntegerField(null=True, blank=True)
